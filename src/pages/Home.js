@@ -103,9 +103,9 @@ export default function Home() {
                 <title>Restawrant</title>
                 <meta name="description" content="Restawrant home page" />
             </Helmet>
-            <Box>
+            {/* <Box>
                 <Nappbar />
-            </Box>
+            </Box> */}
             <Box sx = {style.outerCon} style ={{ background: `url(${Image})`,backgroundSize : "100%" ,backgroundRepeat : "no-repeat"}}>
                 <Box>
                 <Typography sx = {style.Label}>
