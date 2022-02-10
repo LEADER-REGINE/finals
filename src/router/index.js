@@ -81,14 +81,11 @@ export default function RouterComponent() {
   return (
     <ThemeProvider theme={ui.isDarkMode ? darkTheme : lightTheme}>
       <CssBaseline />
-
       <Router>
-        <Nav />
         <Switch>
           <Route exact component={Login} path="/" />
 
         </Switch>
-        <BottomNav />
       </Router>
     </ThemeProvider>
   );
