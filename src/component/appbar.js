@@ -12,9 +12,9 @@ import SearchIcon from '@mui/icons-material/Search';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.common.black, 0.15),
   '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: alpha(theme.palette.common.black, 0.25),
   },
   marginLeft: 0,
   width: '100%',
@@ -67,7 +67,8 @@ export default function SearchAppBar() {
             marginRight : "100px"
         },
         appbarColor : {
-            backgroundColor : "white"
+            backgroundColor : "white",
+            color : "#FA3A3A",
         }
     }
   return (

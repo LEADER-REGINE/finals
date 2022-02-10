@@ -6,6 +6,7 @@ import {
 import React, { useState } from 'react'
 import firebase from "../config/firebase";
 import { useHistory, Link } from 'react-router-dom';
+import { Helmet } from "react-helmet";
 
 const db = firebase.firestore();
 
@@ -45,6 +46,7 @@ export default function Register() {
                     .then((userCredential) => {
                         // Signed in
                         var user = userCredential.user;
+                        localStorage.setItem("uid", user.uid);
                         // ...
                         var batch = db.batch();
                         batch.set(db.collection("users").doc(user.uid), {
@@ -52,7 +54,7 @@ export default function Register() {
                         })
 
                         batch.commit().then((docRef) => {
-                            history.push("/")
+                            history.push("/");
                         })
 
                     })
@@ -76,6 +78,11 @@ export default function Register() {
 
     return (
         <Box>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Register</title>
+                <meta name="description" content="User registration" />
+            </Helmet>
             <FormGroup>
                 <FormControl>
                     <TextField

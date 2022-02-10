@@ -6,6 +6,7 @@ import {
 import React, { useState } from 'react'
 import firebase from "../config/firebase";
 import { useHistory } from 'react-router-dom';
+import { Helmet } from "react-helmet";
 
 const db = firebase.firestore();
 
@@ -43,7 +44,8 @@ export default function Login() {
                     // Signed in
                     var user = userCredential.user;
                     // ...
-                    history.push("/")
+                    history.push("/");
+                    localStorage.setItem("uid", user.uid);
                 })
                 .catch((error) => {
                     var errorCode = error.code;
@@ -64,6 +66,11 @@ export default function Login() {
 
     return (
         <Box>
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Login</title>
+                <meta name="description" content="User login" />
+            </Helmet>
             <FormGroup>
                 <FormControl>
                     <TextField
