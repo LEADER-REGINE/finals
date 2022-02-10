@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import Home from '../pages/Home';
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 export default function RouterComponent() {
   const ui = useSelector((state) => state.ui);
@@ -83,8 +84,9 @@ export default function RouterComponent() {
       <CssBaseline />
       <Router>
         <Switch>
-          <Route exact component={Login} path="/" />
-
+          <Route exact component={Home} path="/" />
+          <Route exact component={Login} path="/login" />
+          <Route exact component={Register} path="/register" />
         </Switch>
       </Router>
     </ThemeProvider>
