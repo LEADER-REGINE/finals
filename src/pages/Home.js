@@ -4,7 +4,7 @@ import React from 'react'
 export default function Home() {
     return (
         <Box>
-            <Typography>Hello WOrld</Typography>
+            <Typography>Hello World</Typography>
         </Box>
     )
 }

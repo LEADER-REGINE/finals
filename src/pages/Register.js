@@ -34,16 +34,27 @@ export default function Register() {
     };
 
     const register = (e) => {
+
         if (!payload.email || !payload.password || !payload.confirmpassword) {
             alert("Please fill out all the fields");
         } else {
             if (payload.password != payload.confirmpassword) {
+                alert("Password mismatch! Please check your password");
+            } else {
                 firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
                     .then((userCredential) => {
                         // Signed in
                         var user = userCredential.user;
                         // ...
-                        history.push("/")
+                        var batch = db.batch();
+                        batch.set(db.collection("users").doc(user.uid), {
+                            email: payload.email,
+                        })
+
+                        batch.commit().then((docRef) => {
+                            history.push("/")
+                        })
+
                     })
                     .catch((error) => {
                         var errorCode = error.code;
