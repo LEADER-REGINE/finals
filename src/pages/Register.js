@@ -46,6 +46,7 @@ export default function Register() {
                     .then((userCredential) => {
                         // Signed in
                         var user = userCredential.user;
+                        localStorage.setItem("uid", user.uid);
                         // ...
                         var batch = db.batch();
                         batch.set(db.collection("users").doc(user.uid), {
@@ -53,7 +54,7 @@ export default function Register() {
                         })
 
                         batch.commit().then((docRef) => {
-                            history.push("/")
+                            history.push("/");
                         })
 
                     })

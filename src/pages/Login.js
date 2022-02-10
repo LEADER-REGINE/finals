@@ -44,7 +44,8 @@ export default function Login() {
                     // Signed in
                     var user = userCredential.user;
                     // ...
-                    history.push("/")
+                    history.push("/");
+                    localStorage.setItem("uid", user.uid);
                 })
                 .catch((error) => {
                     var errorCode = error.code;
