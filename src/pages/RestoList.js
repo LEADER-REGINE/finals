@@ -59,7 +59,7 @@ export default function RestoList() {
                                         image={data.photoURL}
                                     />
                                     <CardContent sx={{ textAlign: 'center' }}>
-                                        <Typography gutterBottom variant="h5" component="div">
+                                        <Typography gutterBottom variant="h6" component="div" noWrap>
                                             {data.restoName}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
