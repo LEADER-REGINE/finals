@@ -167,7 +167,7 @@ export default function Home() {
                     getTopResto.topResto.map((data) => {
                         return (
                             <Grid item xs={12} sm={4} md={4} key={data.docID}>
-                                <Card sx={{ maxWidth: 345 }}>
+                                <Card sx={{ maxWidth: 345 , minHeight : 330 }}>
                                     <CardMedia
                                         component="img"
                                         alt="green iguana"
@@ -175,7 +175,7 @@ export default function Home() {
                                         image={data.photoURL}
                                     />
                                     <CardContent sx={{ textAlign: 'center' }}>
-                                        <Typography gutterBottom variant="h5" component="div">
+                                        <Typography gutterBottom variant="h5" component="div" noWrap>
                                             {data.restoName}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
@@ -183,7 +183,7 @@ export default function Home() {
                                         </Typography>
                                     </CardContent>
 
-                                    <Box sx={{ textAlign: "center", mb: "20px" }}>
+                                    <Box sx={{ textAlign: "center", mb: "20px" , mt : "40px"}}>
                                         <Button size="small" variant="outlined">Details</Button>
                                     </Box>
                                 </Card>
