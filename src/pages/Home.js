@@ -5,6 +5,10 @@ import Image from '../assets/image/bg.png'
 import Resto1 from '../assets/image/1.png'
 import { Helmet } from "react-helmet";
 import firebase from "../config/firebase";
+import Grid from '@mui/material/Grid';
+import Card1 from '../component/card1'
+
+
 
 const db = firebase.firestore();
 export default function Home() {
@@ -122,7 +126,34 @@ export default function Home() {
             <Box sx = {style.restoLabelCon}>
                 <Typography sx = {style.restoLabel}>Top Rated Restaurant</Typography>
             </Box>
-            <Box sx = {style.topCon}>
+
+
+            <Grid container spacing={2} >
+                
+                    <Grid item xs={12} sm={4} md={4}>
+                        <Card1 />
+                    </Grid>
+                
+
+
+            </Grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* <Box sx = {style.topCon}>
                 <Paper variant = "outlined" sx = {style.topPaper}>
                     <Box>
                         <Box component = "img" src = {Resto1} sx = {{width : "300px"}}></Box>
@@ -157,7 +188,7 @@ export default function Home() {
                         </Box>
                     </Box>
                 </Paper>
-            </Box>
+            </Box> */}
             
         </Box>
     )
