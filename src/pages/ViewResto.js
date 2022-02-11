@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import ViewRestoTab from '../component/viewRestoTab'
 import Rating from "@mui/material/Rating";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
+import { useHistory, useParams } from 'react-router-dom';
 
 
 export default function ViewResto() {
@@ -171,16 +172,20 @@ export default function ViewResto() {
       
         
       };
+    const { id } = useParams();
     
     return (
 
-        <Box sx={{ height: "1000px" }}>
+        <Box sx={{ padding:"150px 0px",
+        backgroundImage: `url( https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuyTF34PwKd59RgJ8ewsmj2x-iZ3nR-Bp1ZA&usqp=CAU)`, 
+        backgroundRepeat:'no-repeat',
+        backgroundSize:"100% auto" }}>
             <Box sx={{
                 display: 'flex',
-                direction: "row",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-                p:"0px 150px"
+                direction: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                height:'100%'
             }}>
                 <Card sx={{ width: '500px' }}>
                     <ViewRestoTab />
