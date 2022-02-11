@@ -6,10 +6,12 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import TextField from '@mui/material/TextField';
 import ViewRestoTab from '../component/viewRestoTab'
+import { useHistory, useParams } from 'react-router-dom';
 
+export default function Pages() {
 
-export default function pages() {
-
+    const { id } = useParams();
+    
     return (
 
         <Box sx={{ padding:"150px 0px",
