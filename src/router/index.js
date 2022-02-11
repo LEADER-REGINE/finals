@@ -19,13 +19,8 @@ import {
 import Home from '../pages/Home';
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-<<<<<<< Updated upstream
 import ViewResto from "../pages/ViewResto";
 import RestoList from "../pages/RestoList";
-=======
-import ContactUs from "../pages/ContacUs";
-
->>>>>>> Stashed changes
 import Appbar from "../component/appbar";
 import Footer from "../component/footer";
 
