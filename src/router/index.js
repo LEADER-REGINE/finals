@@ -19,6 +19,7 @@ import {
 import Home from '../pages/Home';
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Rating from "../component/Rating";
 
 import Appbar from "../component/appbar";
 import Footer from "../component/footer";
@@ -91,6 +92,7 @@ export default function RouterComponent() {
           <Route exact component={Home} path="/" />
           <Route exact component={Login} path="/login" />
           <Route exact component={Register} path="/register" />
+           <Route exact component={Rating} path="/rating" />
         </Switch>
 
         <Footer />

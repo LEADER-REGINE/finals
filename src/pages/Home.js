@@ -8,11 +8,12 @@ import firebase from "../config/firebase";
 import Grid from '@mui/material/Grid';
 import Card1 from '../component/card1'
 import Banner from '../component/banner'
-
+import { useHistory } from "react-router-dom";
 
 const db = firebase.firestore();
 export default function Home() {
 
+    const history = useHistory();
     const [getTopResto, setgetTopResto] = useState({
         topResto: [],
     });
@@ -117,7 +118,7 @@ export default function Home() {
                 </Typography>
                 </Box>
                 
-                <Button variant='outlined' sx={{color:'white', textTransform:'none', borderColor:'white'}}>
+                <Button variant='outlined'  sx={{color:'white', textTransform:'none', borderColor:'white'}} onClick={() => history.push("/rating")}>
                     Rate a Resto
                 </Button>
                 
