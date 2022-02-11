@@ -23,8 +23,8 @@ export default function ContacUs() {
             alignItems: "center",
             justifyContent: "center",
             padding: "10px",
-            color:"#000000",
-           
+            color: "#000000",
+
 
         },
         email: {
@@ -39,18 +39,18 @@ export default function ContacUs() {
         },
         inputText: {
             width: '530px',
-            marginBottom:"50px",
+            marginBottom: "50px",
 
         },
-        btn:{
-            backgroundColor:"#FB6B6B",
-            color:"#FFFFFF",
+        btn: {
+            backgroundColor: "#FB6B6B",
+            color: "#FFFFFF",
             '&:hover': {
                 backgroundColor: "#FFBBBB",
-                borderColor:"#ffffff" ,
+                borderColor: "#ffffff",
                 boxShadow: 'none',
-              },
-           width:"200px"
+            },
+            width: "200px"
         }
     }
     const top100Films = [
@@ -58,7 +58,7 @@ export default function ContacUs() {
         { label: 'Rating' },
         { label: 'Suggestions' },
         { label: 'Others' },
-  
+
     ];
 
     return (
@@ -87,11 +87,11 @@ export default function ContacUs() {
                     rows={4}
                     placeholder="Tell something..."
                     sx={style.inputText}
-                   
+
                 />
             </Box>
             <Box sx={style.detailsContainer}>
-            <Button color="primary" variant = "contained" sx = {style.btn}>Submit</Button>
+                <Button color="primary" variant="contained" sx={style.btn}>Submit</Button>
             </Box>
         </Box>
     )

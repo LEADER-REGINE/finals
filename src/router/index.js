@@ -21,6 +21,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ViewResto from "../pages/ViewResto";
 import RestoList from "../pages/RestoList";
+import ContactUs from "../pages/ContacUs";
 import Appbar from "../component/appbar";
 import Footer from "../component/footer";
 
@@ -92,6 +93,7 @@ export default function RouterComponent() {
           <Route exact component={Home} path="/" />
           <Route exact component={Login} path="/login" />
           <Route exact component={Register} path="/register" />
+          <Route exact component={ContactUs} path="/contactUs" />
           <Route exact component={ViewResto} path="/:id/view" />
           <Route exact component={RestoList} path="/list" />
         </Switch>
