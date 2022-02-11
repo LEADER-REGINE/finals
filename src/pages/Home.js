@@ -1,5 +1,5 @@
-import { Box, Typography , Paper ,Button } from '@mui/material'
-import React , {useState , useEffect} from 'react'
+import { Box, Typography, Paper, Button } from '@mui/material'
+import React, { useState, useEffect } from 'react'
 import Nappbar from '../component/appbar'
 import Image from '../assets/image/bg.png'
 import Image2 from '../assets/image/bg2.jpg'
@@ -8,29 +8,26 @@ import { Helmet } from "react-helmet";
 import firebase from "../config/firebase";
 import Grid from '@mui/material/Grid';
 import Card1 from '../component/card1'
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 import Banner from '../component/banner'
-
+import { useHistory } from 'react-router-dom';
 
 const db = firebase.firestore();
 export default function Home() {
-
+    const history = useHistory();
     const [getTopResto, setgetTopResto] = useState({
         topResto: [],
     });
 
     const fetchTopRated = () => {
-        db.collection("resto").orderBy("rating", "desc")
-            .onSnapshot({ includeMetadataChanges: true }, (snapshot) => {
+        db.collection("resto").orderBy("rating", "desc").limit(3)
+            .onSnapshot((snapshot) => {
                 let topList = [];
-                snapshot.docChanges().forEach((change) => {
-                    if (change.type === "added") {
-                        console.log("New resto: ", change.doc.data());
-                    }
-
-                    topList.push(change.doc.data());
-
-                    var source = snapshot.metadata.fromCache ? "local cache" : "server";
-                    console.log("Data came from " + source);
+                snapshot.forEach((doc) => {
+                    topList.push(doc.data());
                 });
                 setgetTopResto({ topResto: topList });
             });
@@ -40,61 +37,60 @@ export default function Home() {
         fetchTopRated();
     }, [])
 
-
     const style = {
-        outerCon : {
-            display : "flex",
-            alignItems : "center",
-            justifyContent : "center",
-            height : "500px",
-            flexDirection : "column"
+        outerCon: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "500px",
+            flexDirection: "column"
         },
-        Label : {
-            fontSize : "100px",
-            color : "white"
+        Label: {
+            fontSize: "100px",
+            color: "white"
         },
-        subLabelCon : {
-            border : "4px solid white",
-            padding : "5px 30px",
-            borderRadius : "8px"
+        subLabelCon: {
+            border: "4px solid white",
+            padding: "5px 30px",
+            borderRadius: "8px"
         },
-        subLabel : {
-            fontSize : "40px",
-            color : "white",
+        subLabel: {
+            fontSize: "40px",
+            color: "white",
         },
-        restoLabel : {
-            fontSize : "45px",
-            fontWeight : 600,
+        restoLabel: {
+            fontSize: "45px",
+            fontWeight: 600,
         },
         restoLabelCon : {
             display : "flex",
             alignItems : "center",
             justifyContent : "center",
-            marginBottom : "20px"
+            marginBottom : "50px"
         },
-        topCon : {
-            display : "flex",
-            flexDirection : "row",
-            justifyContent : "center",
-            alignItems:"center",
-            marginTop : "30px",
-            marginLeft : "50px",
-            marginRight : "50px"
+        topCon: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "30px",
+            marginLeft: "50px",
+            marginRight: "50px"
         },
 
-        topPaper : {
-            paddingBottom : "10px",
-            border : "2px solid #FB6B6B",
-            marginBottom : "100px",
-            marginLeft : "20px",
-            marginRight : "20px"
+        topPaper: {
+            paddingBottom: "10px",
+            border: "2px solid #FB6B6B",
+            marginBottom: "100px",
+            marginLeft: "20px",
+            marginRight: "20px"
         },
-        infoCon : {
-            display:"flex",
-            justifyContent : "center",
-            alignItems : "center",
-            flexDirection : "column",
-            marginTop : "20px"
+        infoCon: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            marginTop: "20px"
         },
         btn : {
             marginTop : "30px",
@@ -106,6 +102,7 @@ export default function Home() {
             display : "flex",
             alignitems : "center",
             justifyContent : "center",
+            marginTop : "50px",
             marginBottom : "50px"
         },
         outerCon2 : {
@@ -130,44 +127,70 @@ export default function Home() {
         },
         innerCon : {
             backgroundColor : "#F5F5F5",
-            padding : "30px"
+            padding : "30px",
+            marginBottom : '50px'
         }
     }
     return (
         <Box>
             <Helmet>
                 <meta charSet="utf-8" />
-                <title>Restawrant</title>
+                <title>Restawran</title>
                 <meta name="description" content="Restawrant home page" />
             </Helmet>
             {/* <Box>
                 <Nappbar />
             </Box> */}
-            <Box sx = {style.outerCon} style ={{ background: `url(${Image})`,backgroundSize : "100%" ,backgroundRepeat : "no-repeat"}}>
+            <Box sx={style.outerCon} style={{ background: `url(${Image})`, backgroundSize: "100%", backgroundRepeat: "no-repeat" }}>
                 <Box>
-                <Typography sx = {style.Label}>
-                    Welcome
-                </Typography>
+                    <Typography variant="h1" color="white">
+                        Welcome
+                    </Typography>
                 </Box>
-                
-                <Button variant='outlined' sx={{color:'white', textTransform:'none', borderColor:'white'}}>
+
+                <Button onClick={() => history.push("/list")} variant='outlined' sx={{ color: 'white', textTransform: 'none', borderColor: 'white' }}>
                     Rate a Resto
                 </Button>
-                
-                
-            </Box>
+
+
+            </Box >
             {/* <Banner /> */}
-            <Box sx = {style.restoLabelCon}>
-                <Typography sx = {style.restoLabel}>Top Rated Restaurant</Typography>
-            </Box>
+            < Box sx={style.restoLabelCon} >
+                <Typography sx={style.restoLabel}>Top Rated Restaurant</Typography>
+            </Box >
 
 
-            <Grid container spacing={2} style = {{marginBottom : "20px"}} >
-                
-                    <Grid item xs={12} sm={4} md={4}>
-                        <Card1 />
-                    </Grid>
-                
+            <Grid container spacing={2} style = {{marginLeft : "60px" , marginRight : "60px"}}>
+
+
+                {
+                    getTopResto.topResto.map((data) => {
+                        return (
+                            <Grid item xs={12} sm={4} md={4} key={data.docID}>
+                                <Card sx={{ maxWidth: 345 }}>
+                                    <CardMedia
+                                        component="img"
+                                        alt="green iguana"
+                                        height="140"
+                                        image={data.photoURL}
+                                    />
+                                    <CardContent sx={{ textAlign: 'center' }}>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            {data.restoName}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {data.address}
+                                        </Typography>
+                                    </CardContent>
+
+                                    <Box sx={{ textAlign: "center", mb: "20px" }}>
+                                        <Button size="small" variant="outlined">Details</Button>
+                                    </Box>
+                                </Card>
+                            </Grid>
+                        )
+                    })
+                }
 
 
             </Grid>

@@ -77,21 +77,21 @@
 //         <Toolbar sx = {style.toolCon}>
 //         <Box sx = {style.menuCon}>
 //           <Typography
-            
+
 //             component="div"
 //             sx={style.menu}
 //           >
 //             Home
 //           </Typography>
 //           <Typography
-            
+
 //             component="div"
 //             sx={style.menu}
 //           >
 //             Resto List
 //           </Typography>
 //           <Typography
-            
+
 //             component="div"
 //             sx={style.menu}
 //           >
@@ -132,13 +132,33 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { useHistory, NavLink } from 'react-router-dom';
+
+import firebase from "../config/firebase";
+
+const links = [
+  {
+    to: "/",
+    name: "Home",
+  },
+  {
+    to: "/list",
+    name: "Resto List",
+  },
+  {
+    to: "/contactus",
+    name: "Contact Us",
+  },
+];
 
 const pages = ['Home', 'Resto List', 'Contact Us'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
+  const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [isLoggedIn, setisLoggedIn] = React.useState(false);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -155,8 +175,24 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      setisLoggedIn(true);
+      // ...
+    } else {
+      setisLoggedIn(false);
+    }
+  });
+
+  const login = (e) => {
+    handleCloseUserMenu();
+    history.push("/login");
+  }
+
   return (
-    <AppBar position="static" sx={{background:"none"}}>
+    <AppBar position="static" sx={{ background: "none" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <Typography
@@ -197,9 +233,9 @@ const ResponsiveAppBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" sx={{textTransform:"none", color:'#FA3A3A'}}>{page}</Typography>
+              {links.map((page) => (
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <NavLink to={page.to} textAlign="center" style={{ textDecoration: "none" }}>{page.name}</NavLink>
                 </MenuItem>
               ))}
             </Menu>
@@ -213,14 +249,10 @@ const ResponsiveAppBar = () => {
             LOGO
           </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block', textTransform:"none", color:'#FA3A3A' }}
-              >
-                {page}
-              </Button>
+            {links.map((page) => (
+              <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                <NavLink to={page.to} textAlign="center" style={{ textDecoration: "none" }}>{page.name}</NavLink>
+              </MenuItem>
             ))}
           </Box>
 
@@ -246,11 +278,20 @@ const ResponsiveAppBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {isLoggedIn ? (
+                settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))
+              ) : (
+                <MenuItem onClick={() => login()}>
+                  <Typography textAlign="center">Login</Typography>
                 </MenuItem>
-              ))}
+              )
+
+              }
+              { }
             </Menu>
           </Box>
         </Toolbar>
