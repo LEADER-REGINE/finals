@@ -62,11 +62,11 @@ export default function Home() {
             fontSize: "45px",
             fontWeight: 600,
         },
-        restoLabelCon : {
-            display : "flex",
-            alignItems : "center",
-            justifyContent : "center",
-            marginBottom : "50px"
+        restoLabelCon: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: "50px"
         },
         topCon: {
             display: "flex",
@@ -92,43 +92,43 @@ export default function Home() {
             flexDirection: "column",
             marginTop: "20px"
         },
-        btn : {
-            marginTop : "30px",
-            border : "1px solid #FB6B6B",
-            color : "black"
+        btn: {
+            marginTop: "30px",
+            border: "1px solid #FB6B6B",
+            color: "black"
         },
 
-        featuredCon : {
-            display : "flex",
-            alignitems : "center",
-            justifyContent : "center",
-            marginTop : "50px",
-            marginBottom : "50px"
+        featuredCon: {
+            display: "flex",
+            alignitems: "center",
+            justifyContent: "center",
+            marginTop: "50px",
+            marginBottom: "50px"
         },
-        outerCon2 : {
-            display : "flex",
-            alignItems : "center",
-            justifyContent : "center",
-            height : "600px",
-            
-           
+        outerCon2: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "600px",
+
+
         },
-        featuredSubTitleCon : {
-            marginLeft : "250px",
-            marginRight : "250px"
+        featuredSubTitleCon: {
+            marginLeft: "250px",
+            marginRight: "250px"
         },
-        featuredTitle : {
-            fontSize : "35px",
-            color : "#FB6B6B"
+        featuredTitle: {
+            fontSize: "35px",
+            color: "#FB6B6B"
         },
 
-        featuredSubTitle : {
-            fontSize : "30px",
+        featuredSubTitle: {
+            fontSize: "30px",
         },
-        innerCon : {
-            backgroundColor : "#F5F5F5",
-            padding : "30px",
-            marginBottom : '50px'
+        innerCon: {
+            backgroundColor: "#F5F5F5",
+            padding: "30px",
+            marginBottom: '50px'
         }
     }
     return (
@@ -160,14 +160,14 @@ export default function Home() {
             </Box >
 
 
-            <Grid container spacing={2} style = {{marginLeft : "60px" , marginRight : "60px"}}>
+            <Grid container spacing={2} style={{ marginLeft: "60px", marginRight: "60px" }}>
 
 
                 {
                     getTopResto.topResto.map((data) => {
                         return (
                             <Grid item xs={12} sm={4} md={4} key={data.docID}>
-                                <Card sx={{ maxWidth: 345 }}>
+                                <Card sx={{ maxWidth: 345 , minHeight : 330 }}>
                                     <CardMedia
                                         component="img"
                                         alt="green iguana"
@@ -175,7 +175,7 @@ export default function Home() {
                                         image={data.photoURL}
                                     />
                                     <CardContent sx={{ textAlign: 'center' }}>
-                                        <Typography gutterBottom variant="h5" component="div">
+                                        <Typography gutterBottom variant="h5" component="div" noWrap>
                                             {data.restoName}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary">
@@ -183,7 +183,7 @@ export default function Home() {
                                         </Typography>
                                     </CardContent>
 
-                                    <Box sx={{ textAlign: "center", mb: "20px" }}>
+                                    <Box sx={{ textAlign: "center", mb: "20px" , mt : "40px"}}>
                                         <Button size="small" variant="outlined">Details</Button>
                                     </Box>
                                 </Card>
@@ -197,49 +197,35 @@ export default function Home() {
 
 
             <Box>
-                <Box sx = {style.featuredCon}>
-                    <Typography sx = {style.restoLabel}>Featured Restaurant</Typography>
+                <Box sx={style.featuredCon}>
+                    <Typography sx={style.restoLabel}>Featured Restaurant</Typography>
                 </Box>
-                
-                <Box sx = {style.outerCon2} style ={{ background: `url(${Image2})`,backgroundSize : "cover" ,backgroundRepeat : "no-repeat"}}></Box>
-                <Box sx = {style.innerCon}>
-                <Box sx = {style.featuredCon}>
-                <Typography sx = {style.featuredTitle}>Barbara's Heritage Restaurant</Typography>
-                </Box>
-                <Box sx = {style.featuredSubTitleCon}>
-                <Typography sx = {style.featuredSubTitle}>Barbara’s Heritage buffet is a well-curated array of local delicacies such as the classic adobo, kare-kare (a dish made with beef and pork in thick peanut sauce), and gambas de Barbara’s (a shrimp dish good as an appetizer or as a main dish). </Typography>
-                </Box>
+
+                <Box sx={style.outerCon2} style={{ background: `url(${Image2})`, backgroundSize: "cover", backgroundRepeat: "no-repeat" }}></Box>
+                <Box sx={style.innerCon}>
+                    <Box sx={style.featuredCon}>
+                        <Typography sx={style.featuredTitle}>Barbara's Heritage Restaurant</Typography>
+                    </Box>
+                    <Box sx={style.featuredSubTitleCon}>
+                        <Typography sx={style.featuredSubTitle}>Barbara’s Heritage buffet is a well-curated array of local delicacies such as the classic adobo, kare-kare (a dish made with beef and pork in thick peanut sauce), and gambas de Barbara’s (a shrimp dish good as an appetizer or as a main dish). </Typography>
+                    </Box>
                 </Box>
             </Box>
 
-            <Box sx = {style.restoLabelCon}>
-                <Typography sx = {style.restoLabel}>Popular Now</Typography>
+            <Box sx={style.restoLabelCon}>
+                <Typography sx={style.restoLabel}>Popular Now</Typography>
             </Box>
 
 
-            <Grid container spacing={2} style = {{marginBottom : "50px" , marginLeft : "60px" , marginRight : "60px"}} >
-                
-                    <Grid item xs={12} sm={4} md={4}>
-                        <Card1 />
-                    </Grid>
-                
+            <Grid container spacing={2} style={{ marginBottom: "50px", marginLeft: "60px", marginRight: "60px" }} >
+
+                <Grid item xs={12} sm={4} md={4}>
+                    <Card1 />
+                </Grid>
+
 
 
             </Grid>
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
 
             {/* <Box sx = {style.topCon}>
                 <Paper variant = "outlined" sx = {style.topPaper}>
@@ -279,7 +265,7 @@ export default function Home() {
             </Box> */}
 
 
-            
+
         </Box>
     )
 }

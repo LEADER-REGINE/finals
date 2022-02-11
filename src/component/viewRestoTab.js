@@ -4,7 +4,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import firebase from "../config/firebase";
+import { useHistory, useParams } from 'react-router-dom';
 
+const db = firebase.firestore();
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -38,13 +41,30 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs() {
+export default function BasicTabs({ restoID }) {
+  const history = useHistory();
   const [value, setValue] = React.useState(0);
+
+  const [getrestoProfile, setrestoProfile] = React.useState({
+    profile: [],
+  });
+
+  const fetchData = async () => {
+    const restoRef = db.collection('resto').doc(restoID);
+    let restoProfile = [];
+    restoRef.get().then(doc => {
+      restoProfile.push(doc.data());
+      setrestoProfile({ profile: restoProfile });
+    })
+  }
+
+  React.useEffect(() => {
+    fetchData();
+  }, [])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -55,7 +75,18 @@ export default function BasicTabs() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Overview
+        {
+          getrestoProfile.profile.map((data) => {
+            return (
+              <Box>
+                <Typography>{data.restoName}</Typography>
+                <Box>
+                  <Typography>{data.descriptionLong}</Typography>
+                </Box>
+              </Box>
+            )
+          })
+        }
       </TabPanel>
       <TabPanel value={value} index={1}>
         Review

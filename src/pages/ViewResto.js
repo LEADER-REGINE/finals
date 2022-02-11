@@ -173,19 +173,21 @@ export default function ViewResto() {
         
       };
     const { id } = useParams();
-    
+
     return (
 
-        <Box sx={{ padding:"150px 0px",
-        backgroundImage: `url( https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuyTF34PwKd59RgJ8ewsmj2x-iZ3nR-Bp1ZA&usqp=CAU)`, 
-        backgroundRepeat:'no-repeat',
-        backgroundSize:"100% auto" }}>
+        <Box sx={{
+            padding: "150px 0px",
+            backgroundImage: `url( https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuyTF34PwKd59RgJ8ewsmj2x-iZ3nR-Bp1ZA&usqp=CAU)`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: "100% auto"
+        }}>
             <Box sx={{
                 display: 'flex',
                 direction: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                height:'100%'
+                height: '100%'
             }}>
                 <Card sx={{ width: '500px' }}>
                     <ViewRestoTab />
