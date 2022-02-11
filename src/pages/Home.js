@@ -2,6 +2,7 @@ import { Box, Typography , Paper ,Button } from '@mui/material'
 import React , {useState , useEffect} from 'react'
 import Nappbar from '../component/appbar'
 import Image from '../assets/image/bg.png'
+import Image2 from '../assets/image/bg2.jpg'
 import Resto1 from '../assets/image/1.png'
 import { Helmet } from "react-helmet";
 import firebase from "../config/firebase";
@@ -68,7 +69,8 @@ export default function Home() {
         restoLabelCon : {
             display : "flex",
             alignItems : "center",
-            justifyContent : "center"
+            justifyContent : "center",
+            marginBottom : "20px"
         },
         topCon : {
             display : "flex",
@@ -98,6 +100,37 @@ export default function Home() {
             marginTop : "30px",
             border : "1px solid #FB6B6B",
             color : "black"
+        },
+
+        featuredCon : {
+            display : "flex",
+            alignitems : "center",
+            justifyContent : "center",
+            marginBottom : "50px"
+        },
+        outerCon2 : {
+            display : "flex",
+            alignItems : "center",
+            justifyContent : "center",
+            height : "600px",
+            
+           
+        },
+        featuredSubTitleCon : {
+            marginLeft : "250px",
+            marginRight : "250px"
+        },
+        featuredTitle : {
+            fontSize : "35px",
+            color : "#FB6B6B"
+        },
+
+        featuredSubTitle : {
+            fontSize : "30px",
+        },
+        innerCon : {
+            backgroundColor : "#F5F5F5",
+            padding : "30px"
         }
     }
     return (
@@ -129,7 +162,7 @@ export default function Home() {
             </Box>
 
 
-            <Grid container spacing={2} >
+            <Grid container spacing={2} style = {{marginBottom : "20px"}} >
                 
                     <Grid item xs={12} sm={4} md={4}>
                         <Card1 />
@@ -140,14 +173,38 @@ export default function Home() {
             </Grid>
 
 
-            <Box sx={{
-                backgroundImage: `url("https://gttp.imgix.net/320727/x/0/20-best-filipino-restaurants-in-metro-manila-philippines-must-try-local-dishes-11.jpg?auto=compress%2Cformat&ch=Width%2CDPR&dpr=1&ixlib=php-3.3.0&w=883")`
-        }}>
-
-
-
-
+            <Box>
+                <Box sx = {style.featuredCon}>
+                    <Typography sx = {style.restoLabel}>Featured Restaurant</Typography>
+                </Box>
+                
+                <Box sx = {style.outerCon2} style ={{ background: `url(${Image2})`,backgroundSize : "cover" ,backgroundRepeat : "no-repeat"}}></Box>
+                <Box sx = {style.innerCon}>
+                <Box sx = {style.featuredCon}>
+                <Typography sx = {style.featuredTitle}>Barbara's Heritage Restaurant</Typography>
+                </Box>
+                <Box sx = {style.featuredSubTitleCon}>
+                <Typography sx = {style.featuredSubTitle}>Barbara’s Heritage buffet is a well-curated array of local delicacies such as the classic adobo, kare-kare (a dish made with beef and pork in thick peanut sauce), and gambas de Barbara’s (a shrimp dish good as an appetizer or as a main dish). </Typography>
+                </Box>
+                </Box>
             </Box>
+
+            <Box sx = {style.restoLabelCon}>
+                <Typography sx = {style.restoLabel}>Popular Now</Typography>
+            </Box>
+
+
+            <Grid container spacing={2} style = {{marginBottom : "20px"}} >
+                
+                    <Grid item xs={12} sm={4} md={4}>
+                        <Card1 />
+                    </Grid>
+                
+
+
+            </Grid>
+
+            
 
 
 
@@ -197,6 +254,8 @@ export default function Home() {
                     </Box>
                 </Paper>
             </Box> */}
+
+
             
         </Box>
     )
