@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import { Helmet } from "react-helmet";
 import firebase from "../config/firebase";
-import { Box, Typography } from '@mui/material';
+import { Box, Paper, Typography } from '@mui/material';
 
 const db = firebase.firestore();
 export default function RestoList() {
@@ -36,10 +36,12 @@ export default function RestoList() {
                 getAllResto.allResto.map((data) => {
                     return (
                         <Box key={data.docID}>
-                            <Typography>{data.restoName}</Typography>
-                            <Typography>{data.address}</Typography>
-                            <Typography>{data.contactNo}</Typography>
-                            <Typography>Rating: {data.rating}</Typography>
+                            <Paper onClick={() => history.push(`/${data.docID}/view`)}>
+                                <Typography>{data.restoName}</Typography>
+                                <Typography>{data.address}</Typography>
+                                <Typography>{data.contactNo}</Typography>
+                                <Typography>Rating: {data.rating}</Typography>
+                            </Paper>
                         </Box>
                     )
                 })
