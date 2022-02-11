@@ -6,10 +6,12 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import TextField from '@mui/material/TextField';
 import ViewRestoTab from '../component/viewRestoTab'
+import { useHistory, useParams } from 'react-router-dom';
 
+export default function Pages() {
 
-export default function pages() {
-
+    const { id } = useParams();
+    
     return (
 
         <Box sx={{ height: "1000px" }}>
@@ -18,7 +20,7 @@ export default function pages() {
                 direction: "row",
                 justifyContent: "space-between",
                 alignItems: "flex-start",
-                p:"0px 150px"
+                p: "0px 150px"
             }}>
                 <Card sx={{ width: '500px' }}>
                     <ViewRestoTab />
@@ -32,9 +34,9 @@ export default function pages() {
                             Stars
                         </Typography>
                     </CardContent>
-                    <TextField id="outlined-basic" label="Enter Your Review" variant="outlined" sx={{m:"20px"}}/>
+                    <TextField id="outlined-basic" label="Enter Your Review" variant="outlined" sx={{ m: "20px" }} />
                     <Box sx={{ textAlign: "center", mb: "20px" }}>
-                        <Button size="small" variant="contained" sx={{color:'white', backgroundColor:'#FA3A3A'}}>Done</Button>
+                        <Button size="small" variant="contained" sx={{ color: 'white', backgroundColor: '#FA3A3A' }}>Done</Button>
                     </Box>
                 </Card>
             </Box>

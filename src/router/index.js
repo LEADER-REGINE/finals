@@ -92,7 +92,7 @@ export default function RouterComponent() {
           <Route exact component={Home} path="/" />
           <Route exact component={Login} path="/login" />
           <Route exact component={Register} path="/register" />
-          <Route exact component={ViewResto} path="/ViewResto" />
+          <Route exact component={ViewResto} path="/:id/view" />
           <Route exact component={RestoList} path="/list" />
         </Switch>
 
