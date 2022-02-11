@@ -140,14 +140,7 @@ export default function Home() {
             </Grid>
 
 
-            <Box sx={{
-                backgroundImage: `url("https://gttp.imgix.net/320727/x/0/20-best-filipino-restaurants-in-metro-manila-philippines-must-try-local-dishes-11.jpg?auto=compress%2Cformat&ch=Width%2CDPR&dpr=1&ixlib=php-3.3.0&w=883")`
-        }}>
-
-
-
-
-            </Box>
+            
 
 
 
