@@ -251,7 +251,7 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {links.map((page) => (
               <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                <NavLink to={page.to} textAlign="center" style={{ textDecoration: "none" }}>{page.name}</NavLink>
+                <NavLink to={page.to} textAlign="center" style={{ textDecoration: "none", color:"#FA3A3A" }}>{page.name}</NavLink>
               </MenuItem>
             ))}
           </Box>
