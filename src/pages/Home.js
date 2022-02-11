@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 import firebase from "../config/firebase";
 import Grid from '@mui/material/Grid';
 import Card1 from '../component/card1'
-
+import Banner from '../component/banner'
 
 
 const db = firebase.firestore();
@@ -49,7 +49,7 @@ export default function Home() {
             flexDirection : "column"
         },
         Label : {
-            fontSize : "130px",
+            fontSize : "100px",
             color : "white"
         },
         subLabelCon : {
@@ -116,13 +116,14 @@ export default function Home() {
                     Welcome
                 </Typography>
                 </Box>
-                <Box sx = {style.subLabelCon}>
-                <Typography sx = {style.subLabel}>
+                
+                <Button variant='outlined' sx={{color:'white', textTransform:'none', borderColor:'white'}}>
                     Rate a Resto
-                </Typography>
-                </Box>
+                </Button>
+                
                 
             </Box>
+            {/* <Banner /> */}
             <Box sx = {style.restoLabelCon}>
                 <Typography sx = {style.restoLabel}>Top Rated Restaurant</Typography>
             </Box>
@@ -139,7 +140,14 @@ export default function Home() {
             </Grid>
 
 
+            <Box sx={{
+                backgroundImage: `url("https://gttp.imgix.net/320727/x/0/20-best-filipino-restaurants-in-metro-manila-philippines-must-try-local-dishes-11.jpg?auto=compress%2Cformat&ch=Width%2CDPR&dpr=1&ixlib=php-3.3.0&w=883")`
+        }}>
 
+
+
+
+            </Box>
 
 
 
