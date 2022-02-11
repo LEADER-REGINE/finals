@@ -44,7 +44,7 @@ function a11yProps(index) {
 export default function BasicTabs({ restoID }) {
   const history = useHistory();
   const [value, setValue] = React.useState(0);
-
+  console.log(restoID)
   const [getrestoProfile, setrestoProfile] = React.useState({
     profile: [],
   });

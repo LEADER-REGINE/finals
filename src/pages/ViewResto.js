@@ -19,159 +19,159 @@ export default function ViewResto() {
         adaptability: "",
         leadership: "",
         persuasion: "",
-      });
-    
-      const onChange = e => {
+    });
+
+    const onChange = e => {
         e.persist();
-    
+
         const ratingValues = {
-          ...ratingVal,
-          [e.target.name]: e.target.value
-    
+            ...ratingVal,
+            [e.target.name]: e.target.value
+
         };
         setRatingVal(ratingValues);
         calculateAvgRating(ratingValues);
-    
-      };
-    
-      const [payload, setPayload] = useState({
+
+    };
+
+    const [payload, setPayload] = useState({
         postBody: "",
-      });
-    
-      const userInput = (prop) => (e) => {
+    });
+
+    const userInput = (prop) => (e) => {
         setPayload({ ...payload, [prop]: e.target.value });
-      };
-    
-      const [total, setTotal] = useState(0);
-    
-      const calculateAvgRating = ratingValues => {
+    };
+
+    const [total, setTotal] = useState(0);
+
+    const calculateAvgRating = ratingValues => {
         const {
-          teamwork,
-          creativity,
-          adaptability,
-          leadership,
-          persuasion,
+            teamwork,
+            creativity,
+            adaptability,
+            leadership,
+            persuasion,
         } = ratingValues;
         const newTotal =
-          Number(teamwork) +
-          Number(creativity) +
-          Number(adaptability) +
-          Number(leadership) +
-          Number(persuasion);
-    
+            Number(teamwork) +
+            Number(creativity) +
+            Number(adaptability) +
+            Number(leadership) +
+            Number(persuasion);
+
         const finalAvg = newTotal / 5;
         setTotal(finalAvg);
-      };
-    
-      useEffect(() => {
-        console.log("test:" + total);
-      }, [total]);
+    };
 
-      const style = {
-       
-      
-       
+    useEffect(() => {
+        console.log("test:" + total);
+    }, [total]);
+
+    const style = {
+
+
+
         //CONTROLLED
         filledStars: {
-          color: "#FFC107",
-          fontSize: {
-            xs: "10px",
-            sm: "20px",
-            md: "30px",
-          },
+            color: "#FFC107",
+            fontSize: {
+                xs: "10px",
+                sm: "20px",
+                md: "30px",
+            },
         },
-      
+
         emptyStars: {
-          color: "#2C2F31",
-          fontSize: {
-            xs: "10px",
-            sm: "20px",
-            md: "30px",
-          },
+            color: "#2C2F31",
+            fontSize: {
+                xs: "10px",
+                sm: "20px",
+                md: "30px",
+            },
         },
         //READ ONLY
         roemptyStars: {
-          color: "#2C2F31",
-      
-          fontSize: {
-            xs: "10px",
-            sm: "20px",
-            md: "45px",
-          },
+            color: "#2C2F31",
+
+            fontSize: {
+                xs: "10px",
+                sm: "20px",
+                md: "45px",
+            },
         },
-      
+
         rofilledStars: {
-          color: "#26CE8D",
-          fontSize: {
-            xs: "10px",
-            sm: "20px",
-            md: "45px",
-          },
+            color: "#26CE8D",
+            fontSize: {
+                xs: "10px",
+                sm: "20px",
+                md: "45px",
+            },
         },
         addStars: {
-          position: "static",
-          fontFamily: "Roboto",
-          fontStyle: "normal",
-          fontWeight: "normal",
-          fontSize: {
-            xs: "10px",
-            sm: "14px",
-            md: "18px",
-          },
-          lineHeight: "20px",
-          display: "flex",
-          textAlign: "center",
-          color: "white",
-          marginTop: "24px",
-          marginBottom: "24px",
+            position: "static",
+            fontFamily: "Roboto",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            fontSize: {
+                xs: "10px",
+                sm: "14px",
+                md: "18px",
+            },
+            lineHeight: "20px",
+            display: "flex",
+            textAlign: "center",
+            color: "white",
+            marginTop: "24px",
+            marginBottom: "24px",
         },
-      
-      
+
+
         // share us style
-       
+
         criteria: {
-          fontStyle: "normal",
-          fontWeight: "normal",
-          fontSize: {
-            xs: "4.2px",
-            sm: "10px",
-            md: "14px",
-          },
-          display: "flex",
-          color: "000000",
-          margin: {
-            xs: "7px 15px",
-            sm: "10px 30px",
-            md: "15px 40px",
-          },
-      
+            fontStyle: "normal",
+            fontWeight: "normal",
+            fontSize: {
+                xs: "4.2px",
+                sm: "10px",
+                md: "14px",
+            },
+            display: "flex",
+            color: "000000",
+            margin: {
+                xs: "7px 15px",
+                sm: "10px 30px",
+                md: "15px 40px",
+            },
+
         },
         stars: {
-          fontFamily: "Roboto",
-          fontStyle: "normal",
-          fontWeight: "normal",
-          display: "flex",
-          color: "#D1D4C9",
-          margin: {
-            xs: "5px 20px",
-            sm: "7px 40px",
-            md: "10px 60px",
-          },
-      
+            fontFamily: "Roboto",
+            fontStyle: "normal",
+            fontWeight: "normal",
+            display: "flex",
+            color: "#D1D4C9",
+            margin: {
+                xs: "5px 20px",
+                sm: "7px 40px",
+                md: "10px 60px",
+            },
+
         },
         allign: {
-          display: "flex",
-          flexDirection: "column",
-      
+            display: "flex",
+            flexDirection: "column",
+
         },
         allign2: {
-          display: "flex",
-          flexDirection: "row",
-      
+            display: "flex",
+            flexDirection: "row",
+
         },
-      
-        
-      };
+
+
+    };
     const { id } = useParams();
 
     return (
@@ -190,7 +190,7 @@ export default function ViewResto() {
                 height: '100%'
             }}>
                 <Card sx={{ width: '500px' }}>
-                    <ViewRestoTab />
+                    <ViewRestoTab restoID={id} />
                 </Card>
                 <Card>
                     <CardContent sx={{ textAlign: 'center' }}>
@@ -198,72 +198,72 @@ export default function ViewResto() {
                             Make A Review
                         </Typography>
                         <hr
-                    style={{
-                      width: 350,
-                      color: "primary",
-                      backgroundColor: "primary",
-                      height: 0.5,
-                      borderColor: "primary",
-                    }}
-                  />
-              <Box sx={style.allign2}>
+                            style={{
+                                width: 350,
+                                color: "primary",
+                                backgroundColor: "primary",
+                                height: 0.5,
+                                borderColor: "primary",
+                            }}
+                        />
+                        <Box sx={style.allign2}>
 
-                <Box sx={style.allign}>
-                  <Typography sx={style.criteria}>Food</Typography>
-                  <Typography sx={style.criteria}>Service</Typography>
-                  <Typography sx={style.criteria}>Ambiance</Typography>
-                  <Typography sx={style.criteria}>Price</Typography>
-                  <Typography sx={style.criteria}>Quality</Typography>
-                </Box>
-                <Box sx={style.allign}>
-                  <Rating
-                    sx={style.stars}
-                    name="teamwork"
-                    onChange={onChange}
-                    icon={<StarRoundedIcon sx={style.filledStars} />}
-                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
+                            <Box sx={style.allign}>
+                                <Typography sx={style.criteria}>Food</Typography>
+                                <Typography sx={style.criteria}>Service</Typography>
+                                <Typography sx={style.criteria}>Ambiance</Typography>
+                                <Typography sx={style.criteria}>Price</Typography>
+                                <Typography sx={style.criteria}>Quality</Typography>
+                            </Box>
+                            <Box sx={style.allign}>
+                                <Rating
+                                    sx={style.stars}
+                                    name="teamwork"
+                                    onChange={onChange}
+                                    icon={<StarRoundedIcon sx={style.filledStars} />}
+                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
 
-                  />
+                                />
 
-                  <Rating
-                    sx={style.stars}
-                    name="creativity"
-                    onChange={onChange}
-                    icon={<StarRoundedIcon sx={style.filledStars} />}
-                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
-                  />
+                                <Rating
+                                    sx={style.stars}
+                                    name="creativity"
+                                    onChange={onChange}
+                                    icon={<StarRoundedIcon sx={style.filledStars} />}
+                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
+                                />
 
-                  <Rating
-                    sx={style.stars}
-                    name="adaptability"
-                    onChange={onChange}
-                    icon={<StarRoundedIcon sx={style.filledStars} />}
-                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
-                  />
+                                <Rating
+                                    sx={style.stars}
+                                    name="adaptability"
+                                    onChange={onChange}
+                                    icon={<StarRoundedIcon sx={style.filledStars} />}
+                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
+                                />
 
-                  <Rating
-                    sx={style.stars}
-                    name="leadership"
-                    onChange={onChange}
-                    icon={<StarRoundedIcon sx={style.filledStars} />}
-                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
-                  />
+                                <Rating
+                                    sx={style.stars}
+                                    name="leadership"
+                                    onChange={onChange}
+                                    icon={<StarRoundedIcon sx={style.filledStars} />}
+                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
+                                />
 
-                  <Rating
-                    sx={style.stars}
-                    name="persuasion"
-                    onChange={onChange}
-                    icon={<StarRoundedIcon sx={style.filledStars} />}
-                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
-                  />
-                </Box>
-              </Box>
+                                <Rating
+                                    sx={style.stars}
+                                    name="persuasion"
+                                    onChange={onChange}
+                                    icon={<StarRoundedIcon sx={style.filledStars} />}
+                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
+                                />
+                            </Box>
+                        </Box>
                     </CardContent>
-                    <Box sx={{textAlign: "center"}}>
-                    <TextField id="outlined-basic" label="Enter Your Review" variant="outlined" sx={{m:"20px"}}/>
+                    <Box sx={{ textAlign: "center" }}>
+                        <TextField id="outlined-basic" label="Enter Your Review" variant="outlined" sx={{ m: "20px" }} />
                     </Box>
                     <Box sx={{ textAlign: "center", mb: "20px" }}>
-                        <Button size="small" variant="contained" sx={{color:'white', backgroundColor:'#FA3A3A'}}>Done</Button>
+                        <Button size="small" variant="contained" sx={{ color: 'white', backgroundColor: '#FA3A3A' }}>Done</Button>
                     </Box>
                 </Card>
             </Box>
@@ -272,4 +272,4 @@ export default function ViewResto() {
 
     );
 
-                }
+}
