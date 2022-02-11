@@ -217,7 +217,7 @@ export default function Home() {
             </Box>
 
 
-            <Grid container spacing={2} style = {{marginBottom : "50px"}} >
+            <Grid container spacing={2} style = {{marginBottom : "50px" , marginLeft : "60px" , marginRight : "60px"}} >
                 
                     <Grid item xs={12} sm={4} md={4}>
                         <Card1 />
