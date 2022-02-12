@@ -2,11 +2,13 @@ import {
     Box, Typography, Button, TextField, FormGroup,
     FormControl,
     FormHelperText,
+    Paper
 } from '@mui/material'
 import React, { useState } from 'react'
 import firebase from "../config/firebase";
 import { useHistory, Link } from 'react-router-dom';
 import { Helmet } from "react-helmet";
+import bg from '../assets/image/bgg.jpg'
 
 const db = firebase.firestore();
 
@@ -75,16 +77,55 @@ export default function Register() {
         }
     }
 
+    const style = {
+        bgCon : {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+        },
+        paperCon : {
+            display : "flex",
+            flexDirection : "column",
+            paddingTop : "50px",
+            paddingLeft : "30px",
+            paddingRight : "30px",
+            paddingBottom : "20px"
+           
+        },
+
+        textfield : {
+            [`& fieldset`]: {
+                borderRadius: 5,
+              },
+        },
+
+        btnLogin : {
+            color : "white",
+            marginBottom : "20px",
+            borderRadius : "8px",
+            height : "45px"
+        },
+
+        linkCon : {
+            display : "flex",
+            alignItems : "center",
+            justifyContent : "center"
+        }
+        
+    }
+
     return (
-        <Box>
+        <Box sx = {style.bgCon} style={{ background: `url(${bg})`, backgroundSize: "100%", backgroundRepeat: "no-repeat" }}>
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>Register</title>
                 <meta name="description" content="User registration" />
             </Helmet>
             <FormGroup>
+            <Paper sx = {style.paperCon} elevation = "50px" >
                 <FormControl>
-                    <TextField
+                    <TextField style = {{width : "300px" , marginBottom : "30px"}} sx = {style.textfield}
                         required
                         id="filled-required"
                         placeholder="E-mail"
@@ -94,7 +135,7 @@ export default function Register() {
                     />
                 </FormControl>
                 <FormControl>
-                    <TextField
+                    <TextField style = {{width : "300px" , marginBottom : "30px"}} sx = {style.textfield}
                         required
                         id="filled-required"
                         placeholder="Password"
@@ -105,7 +146,7 @@ export default function Register() {
                     />
                 </FormControl>
                 <FormControl>
-                    <TextField
+                    <TextField style = {{width : "300px" , marginBottom : "30px"}} sx = {style.textfield}
                         required
                         id="filled-required"
                         placeholder="Confirm Password"
@@ -116,9 +157,12 @@ export default function Register() {
                     />
                 </FormControl>
                 <FormControl>
-                    <Button variant='contained' onClick={() => register()}>REGISTER</Button>
-                    <Link to="/login">Already have an account? Login</Link>
+                    <Button variant='contained' sx = {style.btnLogin} style = {{ backgroundColor : "#FB6B6B"}} onClick={() => register()}>REGISTER</Button>
+                    <Box sx = {style.linkCon}>
+                    <Link style = {{textDecoration : "none" , color : "#6E6E6DFF"}} to="/login">Already have an account? Login</Link>
+                    </Box>
                 </FormControl>
+                </Paper>
             </FormGroup>
         </Box>
     )

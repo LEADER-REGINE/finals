@@ -2,12 +2,16 @@ import {
     Box, Typography, Button, TextField, FormGroup,
     FormControl,
     FormHelperText,
+    Paper
 } from '@mui/material'
 import React, { useState } from 'react'
 import firebase from "../config/firebase";
 import { useHistory } from 'react-router-dom';
 import { Helmet } from "react-helmet";
-
+import bg from '../assets/image/bgg.jpg'
+import EmailIcon from "@mui/icons-material/Email";
+import InputAdornment from "@mui/material/InputAdornment";
+import LockIcon from "@mui/icons-material/Lock";
 const db = firebase.firestore();
 
 
@@ -62,26 +66,67 @@ export default function Login() {
         }
     }
 
+    const style = {
+        bgCon : {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100vh",
+        },
+        paperCon : {
+            display : "flex",
+            flexDirection : "column",
+            paddingTop : "50px",
+            paddingLeft : "30px",
+            paddingRight : "30px",
+            paddingBottom : "20px"
+           
+        },
+
+        textfield : {
+            [`& fieldset`]: {
+                borderRadius: 5,
+              },
+        },
+
+        btnLogin : {
+            color : "white",
+            marginBottom : "20px",
+            borderRadius : "8px",
+            height : "45px"
+        }
+    }
+
     return (
-        <Box>
+        <Box sx = {style.bgCon} style={{ background: `url(${bg})`, backgroundSize: "100%", backgroundRepeat: "no-repeat" }}>
+            
             <Helmet>
                 <meta charSet="utf-8" />
                 <title>Login</title>
                 <meta name="description" content="User login" />
             </Helmet>
+            
             <FormGroup>
+                <Paper sx = {style.paperCon} elevation = "50px" >
                 <FormControl>
-                    <TextField
+                    <TextField style = {{width : "300px" , marginBottom : "30px"}} sx = {style.textfield}
                         required
                         id="filled-required"
                         placeholder="E-mail"
                         variant="outlined"
                         autoComplete="off"
                         onChange={userInput("email")}
+                        InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <EmailIcon />
+                              </InputAdornment>
+                            ),
+                        }}
                     />
                 </FormControl>
                 <FormControl>
-                    <TextField
+                    <TextField style = {{width : "300px" , marginBottom : "30px"}} sx = {style.textfield}
                         required
                         id="filled-required"
                         placeholder="Password"
@@ -89,12 +134,20 @@ export default function Login() {
                         autoComplete="off"
                         type="password"
                         onChange={userInput("password")}
+                        InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <LockIcon />
+                              </InputAdornment>
+                            ),
+                        }}
                     />
                 </FormControl>
                 <FormControl>
-                    <Button variant='contained' onClick={() => login()}>LOGIN</Button>
-                    <Button variant='contained' onClick={() => history.push("/register")}>REGISTER</Button>
+                    <Button variant='contained' sx = {style.btnLogin} style = {{ backgroundColor : "#FB6B6B"}} onClick={() => login()}>LOGIN</Button>
+                    <Button variant='contained'  sx = {style.btnLogin} style = {{ backgroundColor : "#6E6E6DFF"}} onClick={() => history.push("/register")}>REGISTER</Button>
                 </FormControl>
+                </Paper>
             </FormGroup>
         </Box>
     )

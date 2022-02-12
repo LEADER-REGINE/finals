@@ -157,7 +157,7 @@ export default function Home() {
             </Box >
 
 
-            <Grid container spacing={2} style={{ marginLeft: "60px", marginRight: "60px" }}>
+            <Grid container spacing={2} style={{ marginLeft: "60px", marginRight: "60px", display : "flex", flexWrap : "wrap"}}>
 
 
                 {
