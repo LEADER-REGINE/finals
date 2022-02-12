@@ -157,14 +157,14 @@ export default function Home() {
             </Box >
 
 
-            <Grid container spacing={2} style={{ marginLeft: "60px", marginRight: "60px", display : "flex", flexWrap : "wrap"}}>
+            <Grid container spacing={6} style={{ paddingLeft: "60px", paddingRight: "60px" }}>
 
 
                 {
                     getTopResto.topResto.map((data) => {
                         return (
                             <Grid item xs={12} sm={4} md={4} key={data.docID} >
-                                <Card sx={{ maxWidth: 345, minHeight: 330 }}>
+                                <Card >
                                     <CardMedia
                                         component="img"
                                         alt="green iguana"
@@ -210,11 +210,13 @@ export default function Home() {
             </Box>
 
             <Box sx={style.restoLabelCon}>
-                <Typography sx={style.restoLabel}>Popular Now</Typography>
+                <Typography sx={style.restoLabel}>About Us</Typography>
             </Box>
+            <Typography sx={{p:"0px 150px 0px 150px", mb:"40px"}}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</Typography>
+            
 
 
-            <Container>
+            {/* <Container>
                 <Grid container spacing={2} style={{ marginBottom: "50px", marginLeft: "60px", marginRight: "60px" }} >
 
                     <Grid item xs={12} sm={4} md={4}>
@@ -222,7 +224,7 @@ export default function Home() {
                     </Grid>
 
                 </Grid>
-            </Container>
+            </Container> */}
 
 
             {/* <Box sx = {style.topCon}>
