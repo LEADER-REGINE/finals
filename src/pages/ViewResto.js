@@ -116,6 +116,8 @@ const db = firebase.firestore();
 
 export default function ViewResto() {
 
+
+
     const history = useHistory();
 
     const [ratingVal, setRatingVal] = useState({
@@ -185,6 +187,25 @@ export default function ViewResto() {
 
     const { id } = useParams();
 
+    const [getrestoProfile, setrestoProfile] = React.useState({
+        profile: [],
+    });
+
+    const fetchData = async () => {
+        const restoRef = db.collection('resto').doc(id);
+        let restoProfile = [];
+        restoRef.get().then(doc => {
+            restoProfile.push(doc.data());
+            setrestoProfile({ profile: restoProfile });
+        })
+    }
+
+    React.useEffect(() => {
+        fetchData();
+    }, [])
+
+
+
     const rate = (e) => {
         if (!payload.postBody) {
             alert("Please enter a review");
@@ -248,99 +269,107 @@ export default function ViewResto() {
     }
 
     return (
+        <Box>
+            {
+                getrestoProfile.profile.map((data) => {
+                    return (
+                        <Box key={data.docID} sx={{
+                            padding: "150px 0px",
+                            backgroundImage: `url(${data.photoURL})`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: "100% 55%",
+                        }}>
+                            <Box sx={{
+                                display: 'flex',
+                                direction: "column",
+                                justifyContent: "space-evenly",
+                                alignItems: "center",
+                                height: '100%'
+                            }}>
+                                <Card sx={{ width: '500px' }}>
+                                    <ViewRestoTab restoID={id} />
+                                </Card>
+                                <Card>
+                                    <CardContent sx={{ textAlign: 'center' }}>
+                                        <Typography gutterBottom variant="h5" component="div">
+                                            Make A Review
+                                        </Typography>
+                                        <hr
+                                            style={{
+                                                width: 350,
+                                                color: "primary",
+                                                backgroundColor: "primary",
+                                                height: 0.5,
+                                                borderColor: "primary",
+                                            }}
+                                        />
+                                        <Box sx={style.allign2}>
 
-        <Box sx={{
-            padding: "150px 0px",
-            backgroundImage: `url( https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuyTF34PwKd59RgJ8ewsmj2x-iZ3nR-Bp1ZA&usqp=CAU)`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: "100% auto"
-        }}>
-            <Box sx={{
-                display: 'flex',
-                direction: "column",
-                justifyContent: "space-evenly",
-                alignItems: "center",
-                height: '100%'
-            }}>
-                <Card sx={{ width: '500px' }}>
-                    <ViewRestoTab restoID={id} />
-                </Card>
-                <Card>
-                    <CardContent sx={{ textAlign: 'center' }}>
-                        <Typography gutterBottom variant="h5" component="div">
-                            Make A Review
-                        </Typography>
-                        <hr
-                            style={{
-                                width: 350,
-                                color: "primary",
-                                backgroundColor: "primary",
-                                height: 0.5,
-                                borderColor: "primary",
-                            }}
-                        />
-                        <Box sx={style.allign2}>
+                                            <Box sx={style.allign}>
+                                                <Typography sx={style.criteria}>Food</Typography>
+                                                <Typography sx={style.criteria}>Service</Typography>
+                                                <Typography sx={style.criteria}>Ambiance</Typography>
+                                                <Typography sx={style.criteria}>Price</Typography>
+                                                <Typography sx={style.criteria}>Quality</Typography>
+                                            </Box>
+                                            <Box sx={style.allign}>
+                                                <Rating
+                                                    sx={style.stars}
+                                                    name="teamwork"
+                                                    onChange={onChange}
+                                                    icon={<StarRoundedIcon sx={style.filledStars} />}
+                                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
 
-                            <Box sx={style.allign}>
-                                <Typography sx={style.criteria}>Food</Typography>
-                                <Typography sx={style.criteria}>Service</Typography>
-                                <Typography sx={style.criteria}>Ambiance</Typography>
-                                <Typography sx={style.criteria}>Price</Typography>
-                                <Typography sx={style.criteria}>Quality</Typography>
+                                                />
+
+                                                <Rating
+                                                    sx={style.stars}
+                                                    name="creativity"
+                                                    onChange={onChange}
+                                                    icon={<StarRoundedIcon sx={style.filledStars} />}
+                                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
+                                                />
+
+                                                <Rating
+                                                    sx={style.stars}
+                                                    name="adaptability"
+                                                    onChange={onChange}
+                                                    icon={<StarRoundedIcon sx={style.filledStars} />}
+                                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
+                                                />
+
+                                                <Rating
+                                                    sx={style.stars}
+                                                    name="leadership"
+                                                    onChange={onChange}
+                                                    icon={<StarRoundedIcon sx={style.filledStars} />}
+                                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
+                                                />
+
+                                                <Rating
+                                                    sx={style.stars}
+                                                    name="persuasion"
+                                                    onChange={onChange}
+                                                    icon={<StarRoundedIcon sx={style.filledStars} />}
+                                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
+                                                />
+                                            </Box>
+                                        </Box>
+                                    </CardContent>
+                                    <Box sx={{ textAlign: "center" }}>
+                                        <TextField id="outlined-basic" onChange={userInput("postBody")} label="Enter Your Review" variant="outlined" sx={{ m: "20px" }} />
+                                    </Box>
+                                    <Box sx={{ textAlign: "center", mb: "20px" }}>
+                                        <Button size="small" variant="contained" sx={{ color: 'white', backgroundColor: '#FA3A3A' }} onClick={() => rate()}>Submit</Button>
+                                    </Box>
+                                </Card>
                             </Box>
-                            <Box sx={style.allign}>
-                                <Rating
-                                    sx={style.stars}
-                                    name="teamwork"
-                                    onChange={onChange}
-                                    icon={<StarRoundedIcon sx={style.filledStars} />}
-                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
 
-                                />
-
-                                <Rating
-                                    sx={style.stars}
-                                    name="creativity"
-                                    onChange={onChange}
-                                    icon={<StarRoundedIcon sx={style.filledStars} />}
-                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
-                                />
-
-                                <Rating
-                                    sx={style.stars}
-                                    name="adaptability"
-                                    onChange={onChange}
-                                    icon={<StarRoundedIcon sx={style.filledStars} />}
-                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
-                                />
-
-                                <Rating
-                                    sx={style.stars}
-                                    name="leadership"
-                                    onChange={onChange}
-                                    icon={<StarRoundedIcon sx={style.filledStars} />}
-                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
-                                />
-
-                                <Rating
-                                    sx={style.stars}
-                                    name="persuasion"
-                                    onChange={onChange}
-                                    icon={<StarRoundedIcon sx={style.filledStars} />}
-                                    emptyIcon={<StarRoundedIcon sx={style.emptyStars} />}
-                                />
-                            </Box>
                         </Box>
-                    </CardContent>
-                    <Box sx={{ textAlign: "center" }}>
-                        <TextField id="outlined-basic" onChange={userInput("postBody")} label="Enter Your Review" variant="outlined" sx={{ m: "20px" }} />
-                    </Box>
-                    <Box sx={{ textAlign: "center", mb: "20px" }}>
-                        <Button size="small" variant="contained" sx={{ color: 'white', backgroundColor: '#FA3A3A' }} onClick={() => rate()}>Submit</Button>
-                    </Box>
-                </Card>
-            </Box>
 
+                    )
+                })
+            }
         </Box>
 
     );
