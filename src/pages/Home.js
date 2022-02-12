@@ -163,7 +163,7 @@ export default function Home() {
                 {
                     getTopResto.topResto.map((data) => {
                         return (
-                            <Grid item xs={12} sm={4} md={4} key={data.docID}>
+                            <Grid item xs={12} sm={4} md={4} key={data.docID} >
                                 <Card sx={{ maxWidth: 345, minHeight: 330 }}>
                                     <CardMedia
                                         component="img"
@@ -181,7 +181,7 @@ export default function Home() {
                                     </CardContent>
 
                                     <Box sx={{ textAlign: "center", mb: "20px", mt: "40px" }}>
-                                        <Button size="small" variant="outlined">Details</Button>
+                                        <Button size="small" variant="outlined" onClick={() => history.push(`/${data.docID}/view`)}>Details</Button>
                                     </Box>
                                 </Card>
                             </Grid>
