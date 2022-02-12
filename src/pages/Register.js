@@ -60,8 +60,7 @@ export default function Register() {
                     })
                     .catch((error) => {
                         var errorCode = error.code;
-                        var errorMessage = error.message;
-                        console.log(errorCode);
+                        
                         if (errorCode == "auth/invalid-email") {
                             alert("Invalid Email.");
                         }

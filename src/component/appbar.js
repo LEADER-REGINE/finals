@@ -167,7 +167,10 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (link) => {
+    if (link) {
+      history.push(link);
+    }
     setAnchorElNav(null);
   };
 
@@ -234,8 +237,8 @@ const ResponsiveAppBar = () => {
               }}
             >
               {links.map((page) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <NavLink to={page.to} textAlign="center" style={{ textDecoration: "none" }}>{page.name}</NavLink>
+                <MenuItem key={page.name} onClick={() => handleCloseNavMenu(page.to)}>
+                  <Typography textAlign="center" >{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -250,8 +253,8 @@ const ResponsiveAppBar = () => {
           </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {links.map((page) => (
-              <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                <NavLink to={page.to} textAlign="center" style={{ textDecoration: "none", color:"#FA3A3A" }}>{page.name}</NavLink>
+              <MenuItem key={page.name} onClick={() => handleCloseNavMenu(page.to)}>
+                <Typography textAlign="center" >{page.name}</Typography>
               </MenuItem>
             ))}
           </Box>

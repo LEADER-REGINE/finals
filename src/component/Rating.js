@@ -337,10 +337,6 @@ export default function BasicRating() {
     setTotal(finalAvg);
   };
 
-  React.useEffect(() => {
-    console.log("test:" + total);
-  }, [total]);
-
   function setRating(e) {
 
 

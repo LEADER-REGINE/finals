@@ -1,18 +1,15 @@
-import { Box, Typography, Paper, Button } from '@mui/material'
+import { Box, Typography, Button } from '@mui/material'
 import React, { useState, useEffect } from 'react'
-import Nappbar from '../component/appbar'
 import Image from '../assets/image/bg.png'
 import Image2 from '../assets/image/bg2.jpg'
-import Resto1 from '../assets/image/1.png'
 import { Helmet } from "react-helmet";
 import firebase from "../config/firebase";
 import Grid from '@mui/material/Grid';
 import Card1 from '../component/card1'
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Banner from '../component/banner'
+import Container from '@mui/material/Container';
 import { useHistory } from 'react-router-dom';
 
 const db = firebase.firestore();
@@ -167,7 +164,7 @@ export default function Home() {
                     getTopResto.topResto.map((data) => {
                         return (
                             <Grid item xs={12} sm={4} md={4} key={data.docID}>
-                                <Card sx={{ maxWidth: 345 , minHeight : 330 }}>
+                                <Card sx={{ maxWidth: 345, minHeight: 330 }}>
                                     <CardMedia
                                         component="img"
                                         alt="green iguana"
@@ -183,7 +180,7 @@ export default function Home() {
                                         </Typography>
                                     </CardContent>
 
-                                    <Box sx={{ textAlign: "center", mb: "20px" , mt : "40px"}}>
+                                    <Box sx={{ textAlign: "center", mb: "20px", mt: "40px" }}>
                                         <Button size="small" variant="outlined">Details</Button>
                                     </Box>
                                 </Card>
@@ -217,15 +214,16 @@ export default function Home() {
             </Box>
 
 
-            <Grid container spacing={2} style={{ marginBottom: "50px", marginLeft: "60px", marginRight: "60px" }} >
+            <Container>
+                <Grid container spacing={2} style={{ marginBottom: "50px", marginLeft: "60px", marginRight: "60px" }} >
 
-                <Grid item xs={12} sm={4} md={4}>
-                    <Card1 />
+                    <Grid item xs={12} sm={4} md={4}>
+                        <Card1 />
+                    </Grid>
+
                 </Grid>
+            </Container>
 
-
-
-            </Grid>
 
             {/* <Box sx = {style.topCon}>
                 <Paper variant = "outlined" sx = {style.topPaper}>

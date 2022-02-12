@@ -4,6 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
 import firebase from "../config/firebase";
 import { useHistory, useParams } from 'react-router-dom';
 
@@ -44,10 +45,21 @@ function a11yProps(index) {
 export default function BasicTabs({ restoID }) {
   const history = useHistory();
   const [value, setValue] = React.useState(0);
-  console.log(restoID)
+  const [specialEmpty, setspecialEmpty] = React.useState(true);
+  const [reviewEmpty, setreviewEmpty] = React.useState(true);
+
   const [getrestoProfile, setrestoProfile] = React.useState({
     profile: [],
   });
+
+  const [getrestoSpecials, setrestoSpecials] = React.useState({
+    specials: [],
+  });
+
+  const [getrestoReviews, setrestoReviews] = React.useState({
+    reviews: [],
+  });
+
 
   const fetchData = async () => {
     const restoRef = db.collection('resto').doc(restoID);
@@ -58,8 +70,48 @@ export default function BasicTabs({ restoID }) {
     })
   }
 
+  const fetchSpecials = async () => {
+    db.collection("resto")
+      .doc(restoID)
+      .collection("specials")
+      .onSnapshot((snapshot) => {
+        if (snapshot.size > 0) {
+          let specialsList = [];
+          snapshot.forEach((doc) => {
+            specialsList.push(doc.data());
+          });
+          setrestoSpecials({ specials: specialsList });
+          setspecialEmpty(false);
+        } else {
+          setspecialEmpty(true);
+        }
+
+      });
+  }
+
+  const fetchReviews = async () => {
+    db.collection("resto")
+      .doc(restoID)
+      .collection("reviews")
+      .onSnapshot((snapshot) => {
+        if (snapshot.size > 0) {
+          let reviewsList = [];
+          snapshot.forEach((doc) => {
+            reviewsList.push(doc.data());
+          });
+          setrestoReviews({ reviews: reviewsList });
+          setreviewEmpty(false);
+        } else {
+          setreviewEmpty(true);
+        }
+
+      });
+  }
+
   React.useEffect(() => {
     fetchData();
+    fetchReviews();
+    fetchSpecials();
   }, [])
 
   const handleChange = (event, newValue) => {
@@ -79,7 +131,10 @@ export default function BasicTabs({ restoID }) {
           getrestoProfile.profile.map((data) => {
             return (
               <Box>
-                <Typography>{data.restoName}</Typography>
+                <Box sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                  <Typography>{data.restoName}</Typography>
+                  <Rating readOnly value={data.rating} />
+                </Box>
                 <Box>
                   <Typography>{data.descriptionLong}</Typography>
                 </Box>
@@ -89,10 +144,47 @@ export default function BasicTabs({ restoID }) {
         }
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Review
+        {
+          reviewEmpty ? (
+            <Typography>There are no reviews for this restaurant</Typography>
+          ) : (
+            <Box>
+              {
+                getrestoReviews.reviews.map((data2) => {
+                  return (
+                    <Box>
+                      <Typography>{data2.email}</Typography>
+                      <Typography>{data2.postBody}</Typography>
+                      <Rating readOnly value={data2.userRating} />
+                    </Box>
+                  )
+                })
+              }
+            </Box>
+          )
+
+        }
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Special
+        {
+          specialEmpty ? (
+            <Typography>There are no set special dishes for this restaurant</Typography>
+          ) : (
+            <Box>
+              {
+                getrestoSpecials.specials.map((data3) => {
+                  return (
+                    <Box key={data3.docID}>
+                      <img src={data3.photoURL} alt={data3.dishName} />
+                      <Typography>{data3.dishName}</Typography>
+                    </Box>
+                  )
+                })
+              }
+            </Box>
+          )
+
+        }
       </TabPanel>
     </Box>
   );
