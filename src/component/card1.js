@@ -34,7 +34,7 @@ export default function card1() {
             </CardContent>
 
             <Box sx={{ textAlign: "center", mb: "20px" }}>
-                <Button size="small" variant="outlined">Details</Button>
+                <Button size="small" variant="outlined" >Details</Button>
             </Box>
         </Card>
     );
