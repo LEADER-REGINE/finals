@@ -225,7 +225,7 @@ export default function ViewResto() {
                                         docID: doc2.id,
                                     })
                                     .then((doc3) => {
-                                        db.collection("user")
+                                        db.collection("users")
                                             .doc(sessionStorage.getItem("uid"))
                                             .collection("reviews")
                                             .doc(doc2.id)
