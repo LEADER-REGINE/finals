@@ -152,7 +152,7 @@ const links = [
 ];
 
 const pages = ['Home', 'Resto List', 'Contact Us'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = [ 'Logout'];
 
 const ResponsiveAppBar = () => {
   const history = useHistory();
@@ -193,6 +193,15 @@ const ResponsiveAppBar = () => {
     handleCloseUserMenu();
     history.push("/login");
   }
+
+  const logout = (e) => {
+    handleCloseUserMenu();
+    firebase.auth().signOut().then(() => {
+      history.push('/');
+    }).catch((error) => {
+      // An error happened.
+    });
+  } 
 
   return (
     <AppBar position="static" sx={{ background: "none" }}>
@@ -284,7 +293,7 @@ const ResponsiveAppBar = () => {
               {isLoggedIn ? (
                 settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
+                    <Typography textAlign="center" onClick={()=>logout()}>{setting}</Typography>
                   </MenuItem>
                 ))
               ) : (
