@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import firebase from "../config/firebase";
 import { useHistory, useParams } from 'react-router-dom';
-
+import Grid from '@mui/material/Grid';
 const db = firebase.firestore();
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -170,12 +170,26 @@ export default function BasicTabs({ restoID }) {
           specialEmpty ? (
             <Typography>There are no set special dishes for this restaurant</Typography>
           ) : (
-            <Box>
+            <Box
+            // sx={{width:"100%", height:"200px"}}
+            >
               {
                 getrestoSpecials.specials.map((data3) => {
                   return (
-                    <Box key={data3.docID}>
-                      <img src={data3.photoURL} alt={data3.dishName} />
+                    <Box key={data3.docID}
+                    // sx={{width:"100%", height:"100%"}}
+                    >
+                      {/* <Box
+                        sx={{
+                          backgroundImage: `url( https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuyTF34PwKd59RgJ8ewsmj2x-iZ3nR-Bp1ZA&usqp=CAU)`,
+                          backgroundRepeat: 'no-repeat',
+                          backgroundSize: "100% auto"
+                        }}
+
+                      ></Box> */}
+
+
+                      {/* <img src={data3.photoURL} alt={data3.dishName}  /> */}
                       <Typography>{data3.dishName}</Typography>
                     </Box>
                   )
